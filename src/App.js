@@ -1,14 +1,11 @@
 import AccountsList from './components/accounts/List';
-
-const accounts = [
-  { name: 'pepe' }
-]
+import StateProvider from './context/StateProvider';
 
 const App = () => {
   return (
-    <div>
-      <AccountsList accounts={accounts} />
-    </div>
+    <StateProvider>
+      <AccountsList />
+    </StateProvider>
   )
 }
 

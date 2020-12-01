@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Item from './Item';
+import Context from '../../context/context';
+import { addAccount } from '../../actions/accounts';
 
-const List = (props) => {
-  const { accounts } = props;
+const List = () => {
+  const [state, dispatch] = useContext(Context);
 
   return (
-    <ul>
-      {accounts.map(({ name }) => <Item key={name} name={name} />)}
-    </ul >
+    <div>
+      <ul>
+        {state.accounts.map(({ name }) => <Item key={name} name={name} />)}
+      </ul >
+      <button onClick={
+        () => {
+          dispatch(addAccount('locomia'))
+        }
+      }>Add Account</button>
+    </div>
   )
 }
 
