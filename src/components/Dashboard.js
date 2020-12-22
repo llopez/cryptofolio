@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import { Row, Col, Divider, Button } from "antd";
+import React, { useContext, useEffect, useState } from "react";
+import { Row, Col, Divider, Button, Spin } from "antd";
 import AccountSummary from "./dashboard/AccountSummary";
 import PortfolioSummary from "./dashboard/PortfolioSummary";
 import Context from "../context/Context";
@@ -12,7 +12,10 @@ const Dashboard = () => {
 
   const { accounts } = state;
 
+  const [loading, setLoading] = useState(false);
+
   const refreshDashboard = () => {
+    setLoading(true);
     accounts.map(async (account) => {
       const { address } = account;
       const daiBalance = await dai.getBalance(address);
@@ -27,6 +30,7 @@ const Dashboard = () => {
         eth: ethBalance,
         bat: batBalance,
       }));
+      setLoading(false);
     })
   }
 
@@ -49,9 +53,19 @@ const Dashboard = () => {
       <Divider />
       <Row>
         <Col span="24">
-          {accounts.map((account) => (
-            <AccountSummary account={account} key={account.address} />
-          ))}
+          {
+            loading &&
+            <Row>
+              <Col span='24' style={{ textAlign: 'center' }}>
+                <Spin size='large' />
+              </Col>
+            </Row>
+          }
+          {!loading &&
+            accounts.map((account) => (
+              <AccountSummary account={account} key={account.address} />
+            ))
+          }
         </Col>
       </Row>
     </React.Fragment>

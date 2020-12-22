@@ -20,7 +20,7 @@ const Total = (props) => {
         <Card style={{ textAlign: "right" }}>
           <Statistic
             title="Net Assets"
-            value={1000.45}
+            value={totalValue}
             precision={2}
             prefix="USD"
           />
