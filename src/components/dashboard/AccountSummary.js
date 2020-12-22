@@ -29,7 +29,7 @@ const columns = [
     render: (value) => (
       <Space>
         <Image src={`${value.toLowerCase()}.png`} width="35px" />
-        <Typography.Text>{value}</Typography.Text>
+        <Typography.Text>{value.toUpperCase()}</Typography.Text>
       </Space>
     )
   },
@@ -87,7 +87,6 @@ const AccountSummary = (props) => {
         }
         key="a1"
         extra={
-
           <Row>
             <Col span={12} style={{ textAlign: 'left' }}>
               <Space align='end'>

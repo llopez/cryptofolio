@@ -1,10 +1,11 @@
-const assets = ["dai", "usdc", "eth", "bat", "uni"];
+const assets = ["dai", "usdc", "eth", "bat", "uni", "ethrsi"];
 const market = {
   dai: 0.95,
   usdc: 1.03,
   eth: 650,
   bat: 0.22,
-  uni: 3.75
+  uni: 3.75,
+  ethrsi: 403.19,
 };
 const accounts = [
   {

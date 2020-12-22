@@ -4,6 +4,9 @@ import eth from './eth';
 import bat from './bat';
 import uni from './uni';
 
+import ethrsi from './ethrsi6040';
+
+
 export {
-  dai, usdc, eth, bat, uni
+  dai, usdc, eth, bat, uni, ethrsi
 }
