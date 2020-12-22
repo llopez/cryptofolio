@@ -37,7 +37,10 @@ const columns = [
     title: "Balance",
     dataIndex: "balance",
     key: "balance",
-    align: "right"
+    align: "right",
+    render: (value) => (
+      <span>{parseFloat(value).toFixed(2)}</span>
+    )
   },
   {
     title: "Price",
@@ -49,7 +52,11 @@ const columns = [
     title: "Value",
     dataIndex: "value",
     key: "value",
-    align: "right"
+    align: "right",
+    render: (value) => (
+      <span>{parseFloat(value).toFixed(2)}</span>
+    )
+
   }
 ];
 

@@ -1,5 +1,3 @@
-import { dai, usdc, eth } from "../blockchain/contracts";
-
 export const addAccount = (name, address) => {
   return {
     type: 'ADD',
@@ -11,18 +9,11 @@ export const addAccount = (name, address) => {
   }
 }
 
-export const updateAccount = async (data) => {
-  const { address } = data;
-  const daiBalance = await dai.getBalance(address);
-  const usdcBalance = await usdc.getBalance(address);
-  const ethBalance = await eth.getBalance(address);
+export const updateAccount = (account) => {
   return {
     type: "UPDATE",
     payload: {
-      ...data,
-      dai: parseFloat(daiBalance).toFixed(2),
-      usdc: parseFloat(usdcBalance).toFixed(2),
-      eth: parseFloat(ethBalance).toFixed(2),
+      ...account
     }
   };
 };
