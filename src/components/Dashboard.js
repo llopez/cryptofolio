@@ -4,7 +4,7 @@ import AccountSummary from "./dashboard/AccountSummary";
 import PortfolioSummary from "./dashboard/PortfolioSummary";
 import Context from "../context/Context";
 import { updateAccount } from '../actions/account';
-import { dai, usdc, eth, bat, uni, ethrsi } from "../blockchain/contracts";
+import { dai, usdc, eth, bat, uni, ethrsi, ausdc } from "../blockchain/contracts";
 import { assets, market } from '../data';
 
 const Dashboard = () => {
@@ -24,6 +24,7 @@ const Dashboard = () => {
       const batBalance = await bat.getBalance(address);
       const uniBalance = await uni.getBalance(address);
       const ethrsiBalance = await ethrsi.getBalance(address);
+      const ausdcBalance = await ausdc.getBalance(address);
 
       dispatch(updateAccount({
         ...account,
@@ -33,6 +34,7 @@ const Dashboard = () => {
         bat: batBalance,
         uni: uniBalance,
         ethrsi: ethrsiBalance,
+        ausdc: ausdcBalance,
       }));
       setLoading(false);
     })
