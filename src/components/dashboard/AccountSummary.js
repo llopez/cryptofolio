@@ -1,8 +1,6 @@
-import React, { useEffect, useContext } from "react";
-import { Collapse, Table, Typography, Image, Space } from "antd";
+import React from "react";
+import { Collapse, Table, Typography, Image, Space, Tag } from "antd";
 import { assets, market } from "../../data";
-import Context from '../../context/Context';
-import { updateAccount } from '../../actions/account'
 
 const { Panel } = Collapse;
 
@@ -20,8 +18,7 @@ const accountBalances = (assets, account) => {
 
 const totalValue = (assets, account) => {
   const balances = accountBalances(assets, account);
-  console.log(account.address, balances)
-  return balances.map(({ value }) => value).reduce((a, b) => a + b, 0)
+  return balances.map(({ value }) => value).reduce((a, b) => a + b, 0).toFixed(2)
 }
 
 const columns = [
@@ -70,27 +67,15 @@ const AccountSummary = (props) => {
   const availableAssets = assets.filter((asset) => account[asset] > 0);
   const balances = accountBalances(availableAssets, account);
 
-  const [, dispatch] = useContext(Context);
-
-  useEffect(() => {
-    (async () => {
-      dispatch(await updateAccount(account));
-    })()
-  }, []);
-
   return (
     <Collapse ghost expandIconPosition="right">
       <Panel
         header={
           <Space direction="vertical" size="small">
             <Typography.Title level={5}>{name}</Typography.Title>
-            <Typography.Text
-              underline
-              type="secondary"
-              style={{ fontSize: "10px" }}
-            >
+            <Tag>
               {compressAddress(address)}
-            </Typography.Text>
+            </Tag>
           </Space>
         }
         key="a1"
@@ -99,7 +84,7 @@ const AccountSummary = (props) => {
             {availableAssets.map((asset) => (
               <Image key={asset} src={`${asset.toLowerCase()}.png`} width="25px" />
             ))}
-            <Typography.Text>{totalValue(assets, account)}</Typography.Text>
+            <Typography.Text>{totalValue(availableAssets, account)}</Typography.Text>
           </Space>
         }
       >

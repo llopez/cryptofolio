@@ -20,9 +20,9 @@ export const updateAccount = async (data) => {
     type: "UPDATE",
     payload: {
       ...data,
-      dai: daiBalance,
-      usdc: usdcBalance,
-      eth: ethBalance,
+      dai: parseFloat(daiBalance).toFixed(2),
+      usdc: parseFloat(usdcBalance).toFixed(2),
+      eth: parseFloat(ethBalance).toFixed(2),
     }
   };
 };

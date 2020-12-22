@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Row, Col, Statistic, Card } from "antd";
+
 
 const Total = () => {
   return (
@@ -8,7 +9,7 @@ const Total = () => {
         <Card>
           <Statistic
             title="Total Assets"
-            value={5000.45}
+            value={4000}
             precision={2}
             prefix="USD"
           />

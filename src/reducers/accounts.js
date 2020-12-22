@@ -7,7 +7,10 @@ const reducer = (state = [], { payload, type }) => {
     case ADD:
       return [...state, payload];
     case UPDATE:
-      return [...state.filter(({ address }) => payload.address !== address), payload]
+      return [
+        ...state.filter(({ address }) => payload.address !== address),
+        payload
+      ].sort((a, b) => a.order - b.order)
     case DELETE:
       return state.filter(({ address }) => payload.address !== address)
     default:
