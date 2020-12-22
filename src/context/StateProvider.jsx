@@ -1,9 +1,11 @@
 import React, { useReducer } from "react";
-import Context from "./context";
+import Context from "./Context";
 import rootReducer from "../reducers";
 
+import { accounts } from '../data';
+
 const initialState = {
-  accounts: []
+  accounts
 }
 
 const withCache = reducer => {
