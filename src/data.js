@@ -1,4 +1,4 @@
-const assets = ["dai", "usdc", "eth"];
+const assets = ["dai", "usdc", "eth", "bat"];
 const market = {
   dai: 0.95,
   usdc: 1.03,

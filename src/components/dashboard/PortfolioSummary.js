@@ -1,15 +1,16 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Row, Col, Statistic, Card } from "antd";
 
 
-const Total = () => {
+const Total = (props) => {
+  const { totalValue } = props;
   return (
     <Row gutter={[16, 16]}>
       <Col xs={24} sm={24} md={12} xl={12} xxl={12}>
         <Card>
           <Statistic
             title="Total Assets"
-            value={4000}
+            value={totalValue}
             precision={2}
             prefix="USD"
           />

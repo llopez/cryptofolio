@@ -1,5 +1,5 @@
 import React from "react";
-import { Collapse, Table, Typography, Image, Space, Tag } from "antd";
+import { Collapse, Table, Typography, Image, Space, Tag, Row, Col } from "antd";
 import { assets, market } from "../../data";
 
 const { Panel } = Collapse;
@@ -87,12 +87,20 @@ const AccountSummary = (props) => {
         }
         key="a1"
         extra={
-          <Space>
-            {availableAssets.map((asset) => (
-              <Image key={asset} src={`${asset.toLowerCase()}.png`} width="25px" />
-            ))}
-            <Typography.Text>{totalValue(availableAssets, account)}</Typography.Text>
-          </Space>
+
+          <Row>
+            <Col span={12} style={{ textAlign: 'left' }}>
+              <Space align='end'>
+                {availableAssets.map((asset) => (
+                  <Image key={asset} src={`${asset.toLowerCase()}.png`} width="25px" />
+                ))}
+              </Space>
+            </Col>
+            <Col span={12} style={{ textAlign: 'right', width: 120 }}>
+              <Typography.Text>$ {totalValue(availableAssets, account)}</Typography.Text>
+            </Col>
+          </Row>
+
         }
       >
         <Table

@@ -4,7 +4,8 @@ import AccountSummary from "./dashboard/AccountSummary";
 import PortfolioSummary from "./dashboard/PortfolioSummary";
 import Context from "../context/Context";
 import { updateAccount } from '../actions/account';
-import { dai, usdc, eth } from "../blockchain/contracts";
+import { dai, usdc, eth, bat } from "../blockchain/contracts";
+import { assets, market } from '../data';
 
 const Dashboard = () => {
   const [state, dispatch] = useContext(Context);
@@ -17,12 +18,14 @@ const Dashboard = () => {
       const daiBalance = await dai.getBalance(address);
       const usdcBalance = await usdc.getBalance(address);
       const ethBalance = await eth.getBalance(address);
+      const batBalance = await bat.getBalance(address);
 
       dispatch(updateAccount({
         ...account,
         dai: daiBalance,
         usdc: usdcBalance,
         eth: ethBalance,
+        bat: batBalance,
       }));
     })
   }
@@ -31,9 +34,17 @@ const Dashboard = () => {
     refreshDashboard();
   }, [])
 
+
+  const totalValue = accounts.map(account =>
+    assets
+      .filter(asset => !!account[asset])
+      .map(asset => account[asset] * market[asset])
+      .reduce((a, b) => a + b, 0)
+  ).reduce((a, b) => a + b, 0)
+
   return (
     <React.Fragment>
-      <PortfolioSummary />
+      <PortfolioSummary totalValue={totalValue} />
       <Button onClick={refreshDashboard}>Refresh</Button>
       <Divider />
       <Row>
