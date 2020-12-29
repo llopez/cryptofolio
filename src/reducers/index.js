@@ -1,4 +1,5 @@
 import accounts from './accounts';
+import rates from './rates';
 
 export const combineReducers = reducer => {
   return (state = {}, action) => {
@@ -13,6 +14,7 @@ export const combineReducers = reducer => {
 };
 
 export default combineReducers({
-  accounts
+  accounts,
+  rates,
 });
 

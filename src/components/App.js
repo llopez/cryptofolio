@@ -1,9 +1,10 @@
 import React from "react";
 import { Layout, Tabs, Row, Col } from "antd";
-import { LineChartOutlined, RiseOutlined } from "@ant-design/icons";
+import { LineChartOutlined, RiseOutlined, DollarCircleOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css";
 import Dashboard from "./Dashboard";
 import Defi from "./Defi";
+import Market from './Market';
 
 const { Content } = Layout;
 const { TabPane } = Tabs;
@@ -20,7 +21,7 @@ export default function App() {
             xl={{ offset: 4, span: 16 }}
             xll={{ offset: 4, span: 16 }}
           >
-            <Tabs defaultActiveKey="t1" size="large">
+            <Tabs defaultActiveKey="dashboard" size="large">
               <TabPane
                 tab={
                   <span>
@@ -28,7 +29,7 @@ export default function App() {
                     Dashboard
                   </span>
                 }
-                key="t1"
+                key="dashboard"
               >
                 <Dashboard />
               </TabPane>
@@ -39,9 +40,20 @@ export default function App() {
                     DeFi
                   </span>
                 }
-                key="t2"
+                key="defi"
               >
                 <Defi />
+              </TabPane>
+              <TabPane
+                tab={
+                  <span>
+                    <DollarCircleOutlined />
+                    Market
+                  </span>
+                }
+                key="market"
+              >
+                <Market />
               </TabPane>
             </Tabs>
           </Col>
