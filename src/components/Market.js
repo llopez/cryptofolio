@@ -1,7 +1,12 @@
 import React from "react";
+import Rates from './market/rates';
 
 const Market = () => {
-  return <React.Fragment>This is the Market page</React.Fragment>;
+  return (
+    <React.Fragment>
+      <Rates />
+    </React.Fragment>
+  );
 };
 
 export default Market;
